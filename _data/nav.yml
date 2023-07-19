@@ -1,13 +1,12 @@
 items:
+  - title: Home
+    url: /
 
-- title: Home
-  url: /
+  - title: Incomplete Lines
+    url: /posts
 
-- title: Posts
-  url: /posts
+  - title: About
+    url: /about
 
-- title: About
-  url: /about
-
-- title: Feed
-  url: /feed.xml
+  - title: Feed
+    url: /feed.xml

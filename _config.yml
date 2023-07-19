@@ -1,5 +1,5 @@
 # see _data/meta.yml (so you don't have to restart jekyll to see changes)
-baseurl: /
+baseurl:
 url: https://btrailor.github.io
 permalink: pretty
 sort_by: year, month
