@@ -1,22 +1,17 @@
 {
-  "name": "btrailor.github.io-1",
+  "name": "fccbloom",
   "version": "1.0.0",
-  "description": "## Setup Instructions",
+  "description": "",
   "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/btrailor/btrailor.github.io.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/btrailor/btrailor.github.io/issues"
-  },
-  "homepage": "https://github.com/btrailor/btrailor.github.io#readme",
   "dependencies": {
-    "bootstrap": "^5.2.3"
+    "bootstrap": "^5.3.1"
   }
 }

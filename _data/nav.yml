@@ -2,11 +2,8 @@ items:
   - title: Home
     url: /
 
-  - title: Incomplete Lines
-    url: /posts
+  - title: Blog
+    url: /blog
 
   - title: About
     url: /about
-
-  - title: Feed
-    url: /feed.xml

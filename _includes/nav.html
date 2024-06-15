@@ -1,17 +1,39 @@
-<nav class="container">
-  <div class="row">
-    <div class="col">
-      <img
-        src="../assets/images/Digital-Artifacts.jpg"
-        height="75"
-        width="150"
-      />
-      {% for item in site.data.nav.items %}
-      <span class="me-3{% if item.url == page.url %} active{% endif %}"
-        ><a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></span
-      >
-      {% endfor %}
-      <hr />
+<header class="fixed-header" <background-image><img class='image-fluid w-100' height= 400px src="/assets/images/glitch-banner(white).png"></background-image>
+  <nav class="navbar navbar-expand-lg navbar-light bg-transparent bg-light fixed-top py-0">
+    <a class="navbar-brand" href="/">
+      <img src="/assets/images/Digital_Artifacts_Logo(no_background).png" height="150" width="150">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+       <ul class="navbar-nav">
+        </li>        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>        <li class="nav-item">
+          <a class="nav-link" href="/blog">Blog</a>
+        </li>
+      </ul>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>
+
+
+<!-- IMAGE -->
+<!-- <header class="fixed-header">
+  <background-image><img class='image-fluid w-100' height= 400px src="/assets/images/glitch-banner(white).png"></background-image> -->
+<!-- NAVIGATION -->
+
+   <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown link
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li> -->
