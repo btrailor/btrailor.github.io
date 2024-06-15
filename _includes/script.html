@@ -14,9 +14,11 @@
   var nav =document.querySelector('nav');
   window.addEventListener('scroll',function () {
     if(window.pageYOffset > 250) {
-      nav.classList.add('bg-dark');
+      nav.classList.add('bg-dark'),
+      nav.classList.remove('navbar-expand-lg');
     }else{
-        nav.classList.remove('bg-dark');
+        nav.classList.remove('bg-dark'),
+        nav.classList.add('navbar-expand-lg');
       }
     }
   ) 
