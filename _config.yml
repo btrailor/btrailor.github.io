@@ -21,7 +21,7 @@
 title: DIGITAL ARTIFACTS
 email: brett.gershon@icloud.com
 description: >- # this means to ignore newlines until "baseurl:"jek
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://digitalartifacts.media" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: btrailor
 github_username: btrailor
