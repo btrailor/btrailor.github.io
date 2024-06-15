@@ -25,22 +25,25 @@ $secondary: rgb(227, 136, 87);
   background-image: url(/assets/images/glitch-banner\(white\).png);
   background-position: 50% 75%;
   background-size: 90%;
-  height: 200px;
+  height: 100px;
   // background-color: white !important;
 }
 .navbar-light .navbar-nav .nav-link {
   color: black;
+  padding-right: 40px;
   font-size: 18px;
   font-family: Georgia, "Times New Roman", Times, serif;
   // position: sticky;
 }
 .navbar-brand {
-  padding-left: 60px;
+  padding-left: 20px;
   padding-bottom: 70px;
 }
 
-.bg-dark .navbar-brand {
-  padding-bottom: 50px;
+.bg-dark .navbar-brand #logo {
+  padding-top: 50px;
+  height: 150px !important;
+  width: auto !important;
 }
 
 .navbar-nav .nav-link.active,
@@ -50,10 +53,10 @@ $secondary: rgb(227, 136, 87);
   color: rgb(240, 144, 59) !important;
   font-size: 20px;
   padding: 6px 0;
+  padding-right: 40px;
 }
 
 //BODY UTILITY
 .pushdown {
   margin-top: 150px;
 }
-// BOOTSTRAP RESOURCES
