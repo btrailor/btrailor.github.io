@@ -22,7 +22,7 @@ title: DIGITAL ARTIFACTS
 email: brett.gershon@icloud.com
 description: >- # this means to ignore newlines until "baseurl:"jek
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://digitalartifacts.media" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: btrailor
 github_username: btrailor
 
@@ -30,6 +30,7 @@ github_username: btrailor
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 include: ["_pages"]
 # Exclude from processing.
 # The following items will not be processed, by default.
