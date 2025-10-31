@@ -1,0 +1,18 @@
+baseURL = 'https://digitalartifacts.media/'
+languageCode = 'en-us'
+title = 'DIGITAL ARTIFACTS'
+
+[params]
+  email = 'brett.gershon@icloud.com'
+  description = 'A portfolio of sounds, images, and other media created by Brett Gershon'
+  twitter_username = 'btrailor'
+  github_username = 'btrailor'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+# Enable SASS/SCSS processing
+[build]
+  writeStats = true
