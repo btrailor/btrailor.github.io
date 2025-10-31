@@ -55,16 +55,12 @@ jobs:
           cache: 'npm'
           cache-dependency-path: hugo-site/package-lock.json
 
-      - name: Install Node dependencies
-        run: cd hugo-site && npm ci
-
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Install Node.js dependencies
-        run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
-        working-directory: hugo-site
+      - name: Install Node dependencies
+        run: cd hugo-site && npm ci
 
       - name: Build with Hugo
         env:
