@@ -1,0 +1,30 @@
+<header class="fixed-header">
+  <background-image><img class='image-fluid w-100' height=400px src="/images/glitch-banner(white).png"></background-image>
+  <nav class="navbar navbar-expand-lg navbar-light bg-transparent bg-light fixed-top py-0">
+    <a class="navbar-brand" href="/">
+      <img id="logo" src="/images/Digital_Artifacts_Logo(no_background).png" height="150" width="150">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse float-right text-right justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link{{ if .IsHome }} active{{ end }}" href="/">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{{ if eq .RelPermalink "/sound/" }} active{{ end }}" href="/sound">SOUND</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{{ if eq .RelPermalink "/image/" }} active{{ end }}" href="/image">IMAGE</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{{ if eq .Section "blog" }} active{{ end }}" href="/blog">WORD</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{{ if eq .RelPermalink "/about/" }} active{{ end }}" href="/about">ABOUT</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
