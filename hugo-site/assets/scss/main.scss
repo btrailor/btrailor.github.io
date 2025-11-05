@@ -1,78 +1,472 @@
-$primary: rgb(207, 171, 42);
-$secondary: rgb(227, 136, 87);
+// ====================================
+// DIGITAL ARTIFACTS - RETRO BRUTALIST
+// ====================================
 
-// $success: rgb ()
-// $danger: rgb ()
-// $info: rgb ()
-// $warning: rgb ()
-// $light: rgb ()
-// $dark: rgb ()
-// $white: rgb ()
-// $black: rgb ()
-// $body-color: rgb ()
-// $body-bg: rgb ()
-// $font-family-sans-serif: "Raleway", sans-serif;
-@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+// Color Palette - Minimal but intentional
+$black: #0a0a0a;
+$white: #fafafa;
+$gray: #888;
+$accent: rgb(240, 144, 59); // Warm orange
+$accent-alt: rgb(227, 136, 87); // Secondary orange
+$primary: rgb(207, 171, 42); // Gold accent
 
-// NAVIGATION MENU
-.fixed-header {
-  background-image: url("/images/glitch-banner\(white\).png");
-  width: 100%;
-  height: 300px;
-  position: sticky-top;
+// Typography
+$font-mono: "Courier New", "Courier", monospace;
+$font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+
+// ====================================
+// GLOBAL RESET & BASE
+// ====================================
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-// comment out til .navbar-light
-// .bg-dark {
-//   background-image: url(/images/glitch-banner\(white\).png);
-//   background-position: 50% 75%;
-//   background-size: 90%;
-//   height: 100px;
-// background-color: white !important;
-// }
-.navbar-light .navbar-nav .nav-link {
-  color: black;
-  padding-right: 40px;
-  font-size: 18px;
-  font-family: Georgia, "Times New Roman", Times, serif;
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-sans;
+  background: $white;
+  color: $black;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ====================================
+// TYPOGRAPHY
+// ====================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-mono;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+p {
+  margin-bottom: 1rem;
+  max-width: 65ch;
+}
+
+a {
+  color: $black;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: $accent;
+    text-decoration-thickness: 2px;
+  }
+}
+
+code, pre {
+  font-family: $font-mono;
+  font-size: 0.9rem;
+}
+
+// ====================================
+// LAYOUT CONTAINERS
+// ====================================
+
+.container-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+}
+
+// ====================================
+// HEADER WITH BANNER & NAVIGATION
+// ====================================
+
+.site-header {
   position: sticky;
-}
-.navbar-brand {
-  // padding-left: 20px;
-  padding-bottom: 70px;
+  top: 0;
+  background: $white;
+  z-index: 1000;
+  border-bottom: 2px solid $black;
+
+  .banner-container {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: $white;
+
+    @media (max-width: 768px) {
+      height: 150px;
+    }
+
+    .banner-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .logo-overlay {
+      position: absolute;
+      top: 50%;
+      left: 2rem;
+      transform: translateY(-50%);
+      display: block;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+      z-index: 10;
+
+      @media (max-width: 768px) {
+        left: 1rem;
+      }
+
+      &:hover {
+        opacity: 0.9;
+      }
+
+      .site-logo {
+        height: 160px;
+        width: auto;
+        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+
+        @media (max-width: 768px) {
+          height: 100px;
+        }
+      }
+    }
+  }
+
+  nav {
+    background: $white;
+    padding: 1rem 2rem;
+    border-top: 1px solid $gray;
+
+    @media (max-width: 768px) {
+      padding: 0.75rem 1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: 1200px;
+      margin: 0 auto;
+
+      @media (max-width: 768px) {
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      a {
+        text-decoration: none;
+        font-family: $font-mono;
+        font-size: 0.95rem;
+        position: relative;
+        color: $black;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: $accent;
+
+          &::before {
+            content: ">";
+            position: absolute;
+            left: -12px;
+            color: $accent;
+          }
+        }
+
+        &.active {
+          color: $accent;
+          font-weight: 700;
+        }
+      }
+    }
+  }
 }
 
-.bg-dark .navbar-brand #logo {
-  padding-top: 50px;
-  height: 150px !important;
-  width: auto !important;
+// ====================================
+// HOMEPAGE - VISUAL POEM
+// ====================================
+
+.home-hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 2rem;
+
+  .hero-text {
+    font-family: $font-mono;
+    font-size: clamp(2rem, 8vw, 6rem);
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 2rem;
+
+    .line {
+      display: block;
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+
+      // Staircase effect - each line indents more
+      &:nth-child(1) { padding-left: 0; }
+      &:nth-child(2) { padding-left: 6rem; }
+      &:nth-child(3) { padding-left: 12rem; }
+      &:nth-child(4) { padding-left: 18rem; }
+
+      @media (max-width: 768px) {
+        &:nth-child(2) { padding-left: 3rem; }
+        &:nth-child(3) { padding-left: 6rem; }
+        &:nth-child(4) { padding-left: 9rem; }
+      }
+
+      @for $i from 1 through 5 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{$i * 0.2}s;
+        }
+      }
+    }
+  }
+
+  .hero-subtitle {
+    font-family: $font-mono;
+    font-size: 1.2rem;
+    color: $gray;
+    margin-bottom: 3rem;
+  }
+
+  .enter-arrow {
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+  }
 }
 
-.bg-dark .navbar-collapse .navbar-nav .nav-link.active,
-.navbar-nav .nav-link:hover {
-  // border-top: 4px solid #000000;
-  // border-bottom: 4px solid #000000;
-  color: rgb(240, 144, 59) !important;
-  font-size: 20px;
-  padding: 6px 0;
-  padding-right: 40px;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-// @include media-breakpoint-up(sm) {
-//   .navbar .navbar-brand img {
-//     position: relative;
-//     top: -26px;
-//     width: 46px;
-//     height: 52px;
-//   }
-// }
-
-//BODY UTILITY
-.pushdown {
-  margin-top: 150px;
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-#main {
-  padding-left: 40px !important;
-  padding-right: 40px !important;
+// ====================================
+// PROJECT GRID - Portfolio Sections
+// ====================================
+
+.project-section {
+  margin: 4rem 0;
+
+  .section-title {
+    border-bottom: 2px solid $black;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project-card {
+  border: 2px solid $black;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+  background: $white;
+
+  &:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 4px 4px 0 $black;
+  }
+
+  .project-title {
+    font-family: $font-mono;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-meta {
+    font-size: 0.9rem;
+    color: $gray;
+    margin-bottom: 1rem;
+  }
+
+  .project-description {
+    margin-bottom: 1rem;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+
+    a {
+      font-family: $font-mono;
+      font-size: 0.85rem;
+
+      &::before {
+        content: "→ ";
+      }
+    }
+  }
+}
+
+// ====================================
+// FOOTER
+// ====================================
+
+footer {
+  border-top: 2px solid $black;
+  padding: 2rem;
+  margin-top: 4rem;
+  text-align: center;
+  font-family: $font-mono;
+  font-size: 0.9rem;
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .ascii-art {
+    font-size: 0.8rem;
+    color: $gray;
+    margin-top: 1rem;
+  }
+}
+
+// ====================================
+// UTILITY CLASSES
+// ====================================
+
+.text-mono { font-family: $font-mono; }
+.text-accent { color: $accent; }
+.text-gray { color: $gray; }
+
+.border-box {
+  border: 2px solid $black;
+  padding: 1rem;
+}
+
+.glitch {
+  position: relative;
+
+  &:hover {
+    animation: glitch 0.3s infinite;
+  }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(-2px, 2px); }
+  50% { transform: translate(2px, -2px); }
+  75% { transform: translate(-2px, -2px); }
+}
+
+// ====================================
+// PROJECT DETAIL PAGE
+// ====================================
+
+.project-detail {
+  max-width: 800px;
+
+  header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $gray;
+  }
+
+  .project-content {
+    line-height: 1.8;
+
+    h2, h3, h4 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+
+      li {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    strong {
+      font-family: $font-mono;
+      font-weight: 700;
+    }
+
+    em {
+      font-style: italic;
+      color: $gray;
+    }
+
+    code {
+      background: #f0f0f0;
+      padding: 0.2rem 0.4rem;
+      border-radius: 2px;
+    }
+
+    pre {
+      background: #f0f0f0;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      border: 1px solid $black;
+
+      code {
+        background: none;
+        padding: 0;
+      }
+    }
+
+    blockquote {
+      border-left: 3px solid $black;
+      padding-left: 1rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: $gray;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid $gray;
+      margin: 2rem 0;
+    }
+  }
 }

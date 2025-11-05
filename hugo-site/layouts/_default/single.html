@@ -1,6 +1,36 @@
 {{ define "main" }}
-  <article>
-    <h1>{{ .Title }}</h1>
-    {{ .Content }}
+<div class="container-main">
+  <article class="project-detail">
+    <header>
+      <h1>{{ .Title }}</h1>
+      {{ if .Date }}
+      <div class="project-meta text-gray">
+        {{ .Date.Format "January 2006" }}
+        {{ with .Params.medium }} · {{ . }}{{ end }}
+        {{ with .Params.tech }}
+          {{ range . }} · {{ . }}{{ end }}
+        {{ end }}
+      </div>
+      {{ end }}
+    </header>
+
+    <div class="project-content">
+      {{ .Content }}
+    </div>
+
+    {{ with .Params.links }}
+    <div class="project-links" style="margin-top: 2rem;">
+      {{ range $key, $value := . }}
+        {{ if $value }}
+        <a href="{{ $value }}" target="_blank" rel="noopener">→ {{ $key }}</a>
+        {{ end }}
+      {{ end }}
+    </div>
+    {{ end }}
+
+    <div style="margin-top: 3rem;">
+      <a href="{{ .Section | relURL }}" class="text-mono">← back to {{ .Section }}</a>
+    </div>
   </article>
+</div>
 {{ end }}

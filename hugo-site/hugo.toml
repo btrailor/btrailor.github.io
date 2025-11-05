@@ -2,11 +2,18 @@ baseURL = 'https://digitalartifacts.media/'
 languageCode = 'en-us'
 title = 'DIGITAL ARTIFACTS'
 
+# Allow inline shortcodes (e.g., {{< siteparam "email" >}}) inside Markdown text
+enableInlineShortcodes = true
+
 [params]
   email = 'brett.gershon@icloud.com'
-  description = 'A portfolio of sounds, images, and other media created by Brett Gershon'
+  description = 'sound + code + image + word — a collection of digital artifacts'
   twitter_username = 'btrailor'
   github_username = 'btrailor'
+  # Add your music platform URLs here
+  # bandcamp_url = 'https://yourusername.bandcamp.com'
+  # spotify_url = 'https://open.spotify.com/artist/your-artist-id'
+  # soundcloud_url = 'https://soundcloud.com/yourusername'
 
 [markup]
   [markup.goldmark]

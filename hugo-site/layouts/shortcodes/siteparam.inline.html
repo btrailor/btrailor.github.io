@@ -1,0 +1,3 @@
+{{/* Inline variant of siteparam shortcode for use inside text and links. */}}
+{{- $key := .Get 0 -}} {{- $def := .Get 1 -}} {{- with site.Param $key -}}{{ .
+}}{{- else -}}{{ $def }}{{- end -}}

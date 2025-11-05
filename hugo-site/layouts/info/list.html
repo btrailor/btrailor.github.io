@@ -2,7 +2,11 @@
 <div class="container-main">
   <div class="project-section">
     <h1 class="section-title">{{ .Title }}</h1>
-    {{ .Content }}
+    {{ .Content }} {{/* Append contact block specifically for the Info section
+    */}} {{ partial "contact.html" . }}
+
+    <hr style="margin: 3rem 0" />
+    <p><em>This site was built with Hugo and is hosted on GitHub Pages.</em></p>
 
     {{ if .Pages }}
     <div class="project-grid">
@@ -14,18 +18,12 @@
         {{ if .Date }}
         <div class="project-meta">{{ .Date.Format "2006" }}</div>
         {{ end }}
-        <div class="project-description">
-          {{ .Summary }}
-        </div>
+        <div class="project-description">{{ .Summary }}</div>
         <div class="project-links">
           <a href="{{ .RelPermalink }}">view project</a>
-          {{ with .Params.links }}
-            {{ range $key, $value := . }}
-              {{ if $value }}
-              <a href="{{ $value }}" target="_blank" rel="noopener">{{ $key }}</a>
-              {{ end }}
-            {{ end }}
-          {{ end }}
+          {{ with .Params.links }} {{ range $key, $value := . }} {{ if $value }}
+          <a href="{{ $value }}" target="_blank" rel="noopener">{{ $key }}</a>
+          {{ end }} {{ end }} {{ end }}
         </div>
       </div>
       {{ end }}

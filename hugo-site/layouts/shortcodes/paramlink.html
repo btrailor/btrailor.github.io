@@ -1,0 +1,13 @@
+{{/*
+  Usage:
+    {{< paramlink "github_username" "https://github.com/" "@" >}}
+  Renders: <a href="https://github.com/<value>">@<value></a>
+*/}}
+{{- $key := .Get 0 -}}
+{{- $base := .Get 1 | default "" -}}
+{{- $prefix := .Get 2 | default "" -}}
+{{- $suffix := .Get 3 | default "" -}}
+{{- with site.Param $key -}}
+  {{- $v := . -}}
+  <a href="{{ printf "%s%s" $base $v }}">{{ printf "%s%s%s" $prefix $v $suffix }}</a>
+{{- end -}}
