@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
 {{ partial "head.html" . }}
-<body{{ if hugo.IsProduction }} class="production"{{ end }}>
+<body>
 {{ partial "nav.html" . }}
-<div class="pushdown"></div>
-<div class="container">
-  <div class="row" id="main">
-    <div class="col">
-      {{ block "main" . }}{{ end }}
-    </div>
-  </div>
-</div>
+<main>
+  {{ block "main" . }}{{ end }}
+</main>
 {{ partial "footer.html" . }}
 {{ partial "script.html" . }}
 </body>

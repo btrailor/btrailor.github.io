@@ -1,0 +1,9 @@
+{{/* Inline variant for use within Markdown lines and link contexts. */}}
+{{- $key := .Get 0 -}}
+{{- $base := .Get 1 | default "" -}}
+{{- $prefix := .Get 2 | default "" -}}
+{{- $suffix := .Get 3 | default "" -}}
+{{- with site.Param $key -}}
+  {{- $v := . -}}
+  <a href="{{ printf "%s%s" $base $v }}">{{ printf "%s%s%s" $prefix $v $suffix }}</a>
+{{- end -}}

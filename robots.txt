@@ -1,3 +1,0 @@
-Sitemap: https://btrailor.github.io/sitemap.xml
-User-agent: *
-Allow: /

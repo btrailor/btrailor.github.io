@@ -1,0 +1,31 @@
+<section class="contact-block">
+  <div class="contact-links">
+    {{ with .Site.Params.email }}
+    <div><strong>Email:</strong> <a href="mailto:{{ . }}">{{ . }}</a></div>
+    {{ end }} {{ with .Site.Params.github_username }}
+    <div>
+      <strong>GitHub:</strong> <a href="https://github.com/{{ . }}">@{{ . }}</a>
+    </div>
+    {{ end }} {{ with .Site.Params.twitter_username }}
+    <div>
+      <strong>Twitter:</strong>
+      <a href="https://twitter.com/{{ . }}">@{{ . }}</a>
+    </div>
+    {{ end }} {{ with .Site.Params.bandcamp_url }}
+    <div>
+      <strong>Bandcamp:</strong>
+      <a href="{{ . }}" target="_blank" rel="noopener">link</a>
+    </div>
+    {{ end }} {{ with .Site.Params.spotify_url }}
+    <div>
+      <strong>Spotify:</strong>
+      <a href="{{ . }}" target="_blank" rel="noopener">link</a>
+    </div>
+    {{ end }} {{ with .Site.Params.soundcloud_url }}
+    <div>
+      <strong>SoundCloud:</strong>
+      <a href="{{ . }}" target="_blank" rel="noopener">link</a>
+    </div>
+    {{ end }}
+  </div>
+</section>

@@ -1,0 +1,5 @@
+{{/* Usage: {{< siteparam "email" >}} -> prints site.Params.email if set {{<
+siteparam "key" "default" >}} -> prints site.Params.key or the provided default
+This lets content files access values from hugo-site/hugo.toml [params]. */}}
+{{- $key := .Get 0 -}} {{- $def := .Get 1 -}} {{- with site.Param $key -}}{{ .
+}}{{- else -}}{{ $def }}{{- end -}}

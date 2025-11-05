@@ -1,8 +1,19 @@
-<footer class="container">
-  <div class="row">
-    <div class="col">
-      <hr />
-      <p>{{ now.Year }}</p>
-    </div>
+<footer>
+  <div class="footer-links">
+    <a href="https://github.com/{{ .Site.Params.github_username }}" target="_blank" rel="noopener">github</a>
+    <a href="mailto:{{ .Site.Params.email }}">email</a>
+    <a href="https://twitter.com/{{ .Site.Params.twitter_username }}" target="_blank" rel="noopener">twitter</a>
+    {{- if .Site.Params.bandcamp_url -}}
+    <a href="{{ .Site.Params.bandcamp_url }}" target="_blank" rel="noopener">bandcamp</a>
+    {{- end -}}
+    {{- if .Site.Params.spotify_url -}}
+    <a href="{{ .Site.Params.spotify_url }}" target="_blank" rel="noopener">spotify</a>
+    {{- end -}}
+  </div>
+  <div class="ascii-art">
+    <pre>
+:>  DIGITAL ARTIFACTS  -&
+    {{ now.Year }}
+    </pre>
   </div>
 </footer>
