@@ -24,8 +24,16 @@ class AmbientAudio {
       this.onNetworkConnection(e.detail)
     );
 
-    // Auto-start audio
-    this.toggleAudio();
+    // Try to auto-start audio, but wait for user interaction first
+    // Most browsers require user interaction before playing audio
+    const attemptAutoStart = () => {
+      this.toggleAudio();
+      document.removeEventListener("click", attemptAutoStart);
+      document.removeEventListener("keydown", attemptAutoStart);
+    };
+
+    document.addEventListener("click", attemptAutoStart, { once: true });
+    document.addEventListener("keydown", attemptAutoStart, { once: true });
   }
 
   toggleAudio() {
@@ -44,7 +52,12 @@ class AmbientAudio {
     }
   }
 
-  start() {
+  async start() {
+    // Resume audio context if suspended (browser autoplay policy)
+    if (this.audioContext.state === "suspended") {
+      await this.audioContext.resume();
+    }
+
     this.isPlaying = true;
     this.toggle.classList.add("active");
 

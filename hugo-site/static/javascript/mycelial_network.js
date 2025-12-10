@@ -8,7 +8,7 @@ let growthQueue = [];
 
 // Sophisticated color palette for website integration
 let palette = {
-  background: [250, 250, 250, 0], // White transparent background
+  background: [250, 250, 250], // Match page background #fafafa
   fade: [250, 250, 250, 15], // Fade overlay to clear trails
   mainBranch: [139, 119, 101, 60], // Warm taupe/mushroom - ~23% opacity
   thinBranch: [168, 147, 129, 60], // Lighter tan - ~23% opacity
