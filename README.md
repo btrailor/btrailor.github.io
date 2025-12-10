@@ -1,55 +1,77 @@
-# Perfect Bootstrap Jekyll
+# btrailor.github.io
 
-## Setup Instructions
+Personal portfolio website showcasing creative coding, electronic music, design work, and writing. Built with Hugo and featuring interactive generative visuals and audio.
 
-1. Clone repository to your computer.
-2. Using terminal, navigate to the `perfect-jekyll` directory with `cd`.
-3. In the directory execute: `bundle exec jekyll serve --baseurl ''`.
-4. Visit [http://127.0.0.1:4000](http://127.0.0.1:4000) in your browser.
-5. To work with the CSS: `cd assets/stylesheets` and run `sass --watch style.sass:style.css`.
+## Features
 
-Note: I use [rvm](https://rvm.io/). This incarnation of Perfect Bootstrap Jekyll was made with `ruby 2.7.2p137 (2020-10-01 revision 5445e04352) [arm64-darwin21]`.
+- **Interactive Mycelial Network**: Generative p5.js visualization with organic growth patterns
+- **Glitch Effects**: Hover animations with visual corruption and audio feedback
+- **Generative Ambient Audio**: Three-layer drone synthesis with network sonification
+- **Responsive Design**: Optimized layouts across desktop, tablet, and mobile viewports
 
-## Navigation
+## Tech Stack
 
-Configure main navigation with `_data/nav.yml`.
+- **Hugo** v0.152.2+extended (Static Site Generator)
+- **p5.js** v1.7.0 (Creative Coding)
+- **Web Audio API** (Generative Sound)
+- **SCSS** (Styling)
+- **GitHub Actions** (CI/CD)
 
-## Metadata
+## Local Development
 
-Because Jekyll requires restarting if you change the `_config.yml`, I've moved some the values that you'll typically be adjusting regularly to `_data/meta.yml`. You can add whatever arbitrary values you wish here.
+1. Clone the repository:
 
-## Favicons
+   ```bash
+   git clone https://github.com/btrailor/btrailor.github.io.git
+   cd btrailor.github.io
+   ```
 
-Favicon/Apple/Android icon markup is in head.html. Generate your icons at [favicon.io](https://favicon.io) and just dump all the assets into the top level directory of the repo. The paths should all be accurate.
+2. Navigate to the Hugo site directory:
 
-## Sitemap
+   ```bash
+   cd hugo-site
+   ```
 
-Open up `robots.txt` and update the URL.
+3. Install dependencies:
 
-## "Production" Class
+   ```bash
+   npm install
+   ```
 
-The `<body>` element has `class="production"` added to it when served from GitHub Pages. Feel free to take it out if you don't need it.
+4. Run the development server:
 
-## Adding Pages
+   ```bash
+   hugo server -D --port 1314
+   ```
 
-Just add a new `your-page-name.md` file in the `_pages` directory. At the top of the file, add this "frontmatter":
+5. Visit [http://localhost:1314](http://localhost:1314) in your browser
+
+## Project Structure
 
 ```
----
-layout: page
-title: "your page name"
-permalink: /your-page-name
----
+hugo-site/
+├── assets/scss/          # SCSS stylesheets
+├── content/              # Markdown content
+│   ├── code/            # Code projects
+│   ├── design/          # Design work
+│   ├── images/          # Visual art
+│   ├── sounds/          # Music releases
+│   ├── words/           # Writing
+│   └── info/            # About & contact
+├── layouts/             # HTML templates
+├── static/              # Static assets
+│   ├── images/         # Image files
+│   └── javascript/     # Interactive features
+│       ├── mycelial_network.js
+│       ├── glitch_effects.js
+│       └── ambient_audio.js
+└── hugo.toml           # Hugo configuration
 ```
 
-## Adding Posts
+## Deployment
 
-Just add a new `YYYY-MM-DD-your-post-name.md` file in the `_posts` directory. Note that the name of the file will become the URL and you must follow the date convention. At the top of the file, add this frontmatter:
+The site automatically deploys to GitHub Pages via GitHub Actions on push to `main`. The workflow builds the Hugo site and deploys to the `gh-pages` branch.
 
-```
----
-layout: post
-title "Your Post Title"
-date: 2021-12-20
----
-```
+## License
+
+© 2025 Brett Gershon. All rights reserved.
