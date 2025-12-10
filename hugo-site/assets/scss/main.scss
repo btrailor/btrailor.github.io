@@ -105,11 +105,11 @@ pre {
 .container-main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 2rem 2rem 4rem;
   width: 100%;
 
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: 1rem 1rem 1rem 2rem;
     width: 100%;
     overflow-x: hidden;
   }
@@ -251,13 +251,57 @@ pre {
   min-height: 80vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 4rem 2rem;
-  overflow-x: hidden;
+  justify-content: flex-start; // Changed from center to start
+  padding: 2rem 2rem 4rem; // Add top padding for canvas
+  overflow-x: hidden; // Only hide horizontal overflow
+  overflow-y: visible; // Allow vertical overflow
+  position: relative;
 
   @media (max-width: 768px) {
     min-height: 60vh;
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem 1rem 2rem;
+  }
+
+  #mycelial-canvas {
+    position: absolute;
+    top: 8rem; // Push canvas further down
+    left: 0;
+    width: 100%;
+    height: 500px; // Increased height to avoid clipping
+    z-index: 0;
+    pointer-events: none; // Allow clicking through to links
+
+    @media (max-width: 768px) {
+      top: 5rem;
+      height: 320px;
+    }
+
+    @media (max-width: 480px) {
+      top: 3rem;
+      height: 280px; // Increased from 220px to prevent clipping
+    }
+
+    canvas {
+      display: block;
+    }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 3rem; // Reduce padding to bring text up
+
+    @media (max-width: 768px) {
+      padding-top: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      padding-top: 1.5rem;
+    }
   }
 
   .hero-text {
@@ -272,6 +316,7 @@ pre {
       display: block;
       animation: fadeInUp 0.8s ease forwards;
       opacity: 0;
+      width: fit-content; // Ensure links don't take full width
 
       // Staircase effect - each line indents more
       &:nth-child(1) {
@@ -329,7 +374,20 @@ pre {
     font-family: $font-mono;
     font-size: clamp(1rem, 3vw, 1.2rem);
     color: $gray;
+    margin-top: 18rem; // Increased for desktop to clear larger canvas
     margin-bottom: 3rem;
+
+    @media (max-width: 768px) {
+      margin-top: 10rem; // Reduced for medium viewports
+    }
+
+    @media (max-width: 600px) {
+      margin-top: 9rem; // Smaller tablets
+    }
+
+    @media (max-width: 480px) {
+      margin-top: 6rem; // Small mobile devices
+    }
   }
 
   .enter-arrow {
@@ -664,5 +722,173 @@ footer {
         margin: 1.5rem 0;
       }
     }
+  }
+}
+
+// ====================================
+// GLITCH LINKS
+// ====================================
+
+.glitch-link {
+  color: $black;
+  text-decoration: none;
+  position: relative;
+  display: block;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $accent;
+    animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  }
+
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    padding-left: inherit; // Inherit padding from parent
+  }
+
+  &:hover::before {
+    color: rgb(255, 0, 0);
+    animation: glitch-before 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
+      infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  }
+
+  &:hover::after {
+    color: rgb(0, 255, 255);
+    animation: glitch-after 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse
+      both infinite;
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-before {
+  0% {
+    opacity: 0.8;
+    transform: translate(0);
+  }
+  10% {
+    opacity: 0.8;
+    transform: translate(-2px, -2px);
+  }
+  20% {
+    opacity: 0.8;
+    transform: translate(2px, 2px);
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes glitch-after {
+  0% {
+    opacity: 0.8;
+    transform: translate(0);
+  }
+  10% {
+    opacity: 0.8;
+    transform: translate(2px, 2px);
+  }
+  20% {
+    opacity: 0.8;
+    transform: translate(-2px, -2px);
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+// ====================================
+// AUDIO TOGGLE BUTTON
+// ====================================
+
+#audio-toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid $black;
+  background: $white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+  }
+
+  &:hover {
+    background: $black;
+    color: $white;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.active {
+    background: $accent;
+    border-color: $accent;
+    color: $white;
+  }
+
+  &.muted {
+    .waves {
+      opacity: 0.3;
+    }
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+  }
+
+  .waves {
+    transition: opacity 0.3s ease;
   }
 }

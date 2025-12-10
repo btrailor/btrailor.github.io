@@ -1,5 +1,5 @@
 ---
-title: "For Love and Noise 2017-2023"
+title: "Love of Noise 2017-2023"
 date: 2023-11-20
 type: "sounds"
 links:

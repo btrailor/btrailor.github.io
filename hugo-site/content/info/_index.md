@@ -14,6 +14,18 @@ Brett Gershon is a sound artist, instrument builder, and developer based in Ypsi
 - Writing about music technology and creative process
 - Building "Optimize.Me", a satirical mobile game . .
 
+## Available for Freelance Work
+
+I'm currently accepting freelance projects and collaborations in the following areas:
+
+**Sound & Music** — Custom audio for video games, interactive media, films, and installations. Specializing in generative systems, modular synthesis, and exploring the musical potential of glitches and errors.
+
+**Web Design & Development** — Artist portfolios, musician websites, and creative projects built with modern frameworks. Clean, minimal aesthetics with an emphasis on user experience and performance.
+
+**Brand Identity & Design** — Visual identity systems for musicians, record labels, cultural organizations, and creative practitioners. Album artwork, promotional materials, and cohesive brand guidelines.
+
+Interested in working together? [Get in touch below](#contact).
+
 ## Tools & Technologies
 
 **Audio:** Max/MSP, Monome Norns, Eurorack Modular, Ableton Live, SuperCollider

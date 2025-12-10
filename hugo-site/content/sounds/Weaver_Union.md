@@ -1,5 +1,5 @@
 ---
-title: "Weaver / Union"
+title: "Weaver | Union"
 date: 2024-03-15
 type: "sounds"
 links:

@@ -1,19 +1,52 @@
 {{ define "main" }}
 <div class="home-hero">
-  <div class="hero-text">
-    <span class="line">+ sound</span>
-    <span class="line">+ code</span>
-    <span class="line">+ image</span>
-    <span class="line">+ word</span>
+  <div id="mycelial-canvas"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <a href="/sounds" class="line glitch-link" data-text="+ sound">+ sound</a>
+      <a href="/code" class="line glitch-link" data-text="+ code">+ code</a>
+      <a href="/images" class="line glitch-link" data-text="+ image">+ image</a>
+      <a href="/words" class="line glitch-link" data-text="+ word">+ word</a>
+    </div>
+    <div class="hero-subtitle">
+      a collection of digital artifacts<br />
+      by brett gershon
+    </div>
+    <div class="enter-arrow">↓</div>
   </div>
-  <div class="hero-subtitle">
-    a collection of digital artifacts<br>
-    by brett gershon
-  </div>
-  <div class="enter-arrow">↓</div>
 </div>
 
-<div class="container-main">
-  {{ .Content }}
-</div>
+<div class="container-main">{{ .Content }}</div>
+
+<!-- Audio toggle button -->
+<button id="audio-toggle" aria-label="Toggle ambient sound">
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      class="speaker"
+      d="M8 5L4 8H1V12H4L8 15V5Z"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      class="waves"
+      d="M12 7C12.7956 7.59463 13.3333 8.5297 13.3333 9.58333C13.3333 10.637 12.7956 11.572 12 12.1667M14.6667 5C16.2559 6.1817 17.3333 7.9711 17.3333 10C17.3333 12.0289 16.2559 13.8183 14.6667 15"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+</button>
+
+<script src="/javascript/mycelial_network.js?v={{ now.Unix }}"></script>
+<script src="/javascript/ambient_audio.js?v={{ now.Unix }}"></script>
+<script src="/javascript/glitch_effects.js?v={{ now.Unix }}"></script>
 {{ end }}
