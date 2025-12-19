@@ -4,7 +4,7 @@ title: "Info"
 
 ## About
 
-Brett Gershon is a sound artist, instrument builder, and developer based in Ypsilanti, Michigan. Working at the intersection of code, electronics, and sound, Brett creates tools and compositions that explore the musical potential of errors, accidents, and emergent systems.
+Brett Gershon builds instruments, writes code, designs systems, and makes sound—sometimes all at once. Based in Ypsilanti, Michigan, his work explores the productive potential of errors, the musicality of emergent behavior, and the quiet architectures that enable creative work. Whether crafting shift-register synthesizers, developing content pipelines, or documenting personal infrastructure, Brett treats each domain as a node in a larger practice of sustained curiosity.
 
 ## This Site
 
