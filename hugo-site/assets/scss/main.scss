@@ -361,14 +361,14 @@ pre {
     }
 
     .glitch-link {
-      font-size: clamp(1.8rem, 6vw, 4.5rem);
-      font-weight: 700;
+      font-size: clamp(1.8rem, 6vw, 4.5rem) !important;
+      font-weight: 700 !important;
       line-height: 1.1;
       text-decoration: none;
       display: inline-block;
 
       @media (max-width: 480px) {
-        font-size: clamp(1.4rem, 8vw, 2rem);
+        font-size: clamp(1.4rem, 8vw, 2rem) !important;
       }
     }
 
