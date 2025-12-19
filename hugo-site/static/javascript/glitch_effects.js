@@ -22,12 +22,26 @@ class GlitchEffects {
       { once: true }
     );
 
+    // Also init on mouseenter for better UX (hover then click anywhere)
+    document.addEventListener(
+      "mouseenter",
+      () => {
+        if (!this.audioContext) {
+          this.audioContext = new (window.AudioContext ||
+            window.webkitAudioContext)();
+        }
+      },
+      { once: true, capture: true }
+    );
+
     // Store original text for each link
     this.links.forEach((link, index) => {
       this.originalTexts.set(link, link.textContent);
       link.addEventListener("mouseenter", () => this.onHover(link, index));
       link.addEventListener("mouseleave", () => this.onLeave(link));
     });
+
+    console.log(`GlitchEffects: Found ${this.links.length} links`);
   }
 
   onHover(link, index) {
@@ -47,14 +61,19 @@ class GlitchEffects {
 
     // Different frequencies for each link
     const frequencies = [
-      220, // + sound - A3
-      293.66, // + code - D4
-      329.63, // + image - E4
-      392, // + word - G4
+      220, // + sigil - A3
+      293.66, // + signal - D4
+      329.63, // + schema - E4
+      392, // + spectra - G4
+      440, // + scroll - A4
+      523.25, // + sphere - C5
     ];
 
+    // Use modulo to ensure we always get a valid frequency
+    const freq = frequencies[index % frequencies.length] || 440;
+
     oscillator.type = "square";
-    oscillator.frequency.setValueAtTime(frequencies[index], now);
+    oscillator.frequency.setValueAtTime(freq, now);
 
     // Very short, percussive envelope
     gainNode.gain.setValueAtTime(0, now);
