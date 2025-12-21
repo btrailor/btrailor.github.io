@@ -20,7 +20,6 @@ Being _under development_ is the goal. Not a disclaimer, but a philosophy. The s
 ## Current Projects
 
 - **Two Tangles** — Dual shift register instrument for Norns/Grid
-- **Elder Futhark Icon Set** — Commercial runic icon library
 - **BEES Development** — Continuing the Aleph visual patching environment
 - **POSE System** — Publish Once, Syndicate Everywhere content pipeline
 - **Learning Programs** — 26-week curricula for creative coding mastery
