@@ -1,0 +1,42 @@
+{{ define "main" }}
+<article class="scroll-article">
+  {{ with .Params.image }}
+  <div class="scroll-hero-image">
+    <img src="{{ . }}" alt="{{ $.Title }}" />
+  </div>
+  {{ end }}
+  
+  <header class="scroll-article-header">
+    <div class="scroll-article-meta">
+      {{ if .Date }}
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      {{ end }}
+      {{ with .Params.author }}
+      <span class="scroll-author">by {{ . }}</span>
+      {{ end }}
+    </div>
+    <h1 class="scroll-article-title">{{ .Title }}</h1>
+    {{ with .Params.description }}
+    <p class="scroll-article-subtitle">{{ . }}</p>
+    {{ end }}
+    {{ with .Params.tags }}
+    <div class="scroll-article-tags">
+      {{ range . }}
+      <span class="scroll-tag">{{ . }}</span>
+      {{ end }}
+    </div>
+    {{ end }}
+  </header>
+
+  <div class="scroll-article-body">
+    {{ .Content }}
+  </div>
+
+  <footer class="scroll-article-footer">
+    {{ if .Params.lastmod }}
+    <p class="scroll-lastmod">last updated: {{ .Params.lastmod | dateFormat "January 2, 2006" }}</p>
+    {{ end }}
+    <a href="/scrolls" class="scroll-back-link">← back to scrolls</a>
+  </footer>
+</article>
+{{ end }}
