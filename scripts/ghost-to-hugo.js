@@ -11,7 +11,13 @@ const api = new GhostContentAPI({
   version: "v5.0",
 });
 
-const CONTENT_DIR = path.join(__dirname, "..", "hugo-site", "content", "words");
+const CONTENT_DIR = path.join(
+  __dirname,
+  "..",
+  "hugo-site",
+  "content",
+  "scrolls"
+);
 
 async function syncGhostToHugo() {
   try {

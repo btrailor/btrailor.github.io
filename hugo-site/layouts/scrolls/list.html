@@ -1,0 +1,86 @@
+{{ define "main" }}
+<div class="scrolls-container">
+  <header class="scrolls-header">
+    <h1 class="scrolls-title">under development</h1>
+    <p class="scrolls-tagline">continuation over completion</p>
+  </header>
+
+  <div class="scrolls-layout">
+    {{/* Sidebar with tags */}}
+    <aside class="scrolls-sidebar">
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">categories</h3>
+        <ul class="sidebar-tags">
+          {{/* Collect all unique tags from scrolls */}}
+          {{ $tags := slice }}
+          {{ range .Pages }}
+            {{ with .Params.tags }}
+              {{ range . }}
+                {{ $tags = $tags | append . }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          {{ $uniqueTags := $tags | uniq | sort }}
+          {{ range $uniqueTags }}
+          <li>
+            <a href="/tags/{{ . | urlize }}/" class="sidebar-tag-link">{{ . }}</a>
+          </li>
+          {{ end }}
+          {{ if not $uniqueTags }}
+          <li class="sidebar-empty">no tags yet</li>
+          {{ end }}
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-note">{{ len .Pages }} {{ if eq (len .Pages) 1 }}scroll{{ else }}scrolls{{ end }}</p>
+      </div>
+    </aside>
+
+    {{/* Main content */}}
+    <div class="scrolls-main">
+      {{ if .Pages }}
+      <div class="scrolls-grid">
+        {{ range .Pages }}
+        <article class="scroll-card">
+          {{ with .Params.image }}
+          <a href="{{ $.RelPermalink }}" class="scroll-image-link">
+            <div class="scroll-image">
+              <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy" />
+            </div>
+          </a>
+          {{ end }}
+          <div class="scroll-content">
+            <div class="scroll-meta">
+              {{ if .Date }}
+              <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+              {{ end }}
+              {{ with .Params.tags }}
+              <span class="scroll-tags">
+                {{ range first 2 . }}
+                <span class="scroll-tag">{{ . }}</span>
+                {{ end }}
+              </span>
+              {{ end }}
+            </div>
+            <h2 class="scroll-title">
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h2>
+            {{ with .Params.description }}
+            <p class="scroll-excerpt">{{ . }}</p>
+            {{ else }}
+            <p class="scroll-excerpt">{{ .Summary | truncate 160 }}</p>
+            {{ end }}
+            <a href="{{ .RelPermalink }}" class="scroll-read-more">continue reading →</a>
+          </div>
+        </article>
+        {{ end }}
+      </div>
+      {{ else }}
+      <div class="scrolls-empty">
+        <p>nothing here yet. things are still developing.</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}

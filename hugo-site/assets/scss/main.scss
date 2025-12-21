@@ -975,3 +975,499 @@ footer {
     transition: opacity 0.3s ease;
   }
 }
+
+// ====================================
+// SCROLLS - Publication Styles
+// ====================================
+
+.scrolls-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
+}
+
+.scrolls-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba($black, 0.1);
+
+  @media (max-width: 768px) {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+.scrolls-title {
+  font-family: $font-mono;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  color: $black;
+}
+
+.scrolls-tagline {
+  font-family: $font-mono;
+  font-size: 0.9rem;
+  color: $gray;
+  font-style: italic;
+  margin: 0;
+}
+
+.scrolls-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  @media (max-width: 768px) {
+    gap: 2rem;
+  }
+}
+
+.scroll-card {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+  align-items: start;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba($black, 0.08);
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding-bottom: 2rem;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.scroll-image-link {
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.scroll-image {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba($black, 0.03) 0%,
+    rgba($black, 0.08) 100%
+  );
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease, filter 0.6s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.03);
+    filter: brightness(1.02);
+  }
+}
+
+.scroll-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.scroll-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  color: $gray;
+
+  time {
+    letter-spacing: 0.02em;
+  }
+}
+
+.scroll-tags {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.scroll-tag {
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  text-transform: lowercase;
+  padding: 0.2rem 0.5rem;
+  background: rgba($black, 0.04);
+  color: $gray;
+  letter-spacing: 0.03em;
+}
+
+.scroll-title {
+  font-family: $font-sans;
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+  text-transform: none;
+  letter-spacing: -0.01em;
+
+  a {
+    text-decoration: none;
+    color: $black;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+}
+
+.scroll-excerpt {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba($black, 0.75);
+  margin: 0;
+}
+
+.scroll-read-more {
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  color: $accent;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: darken($accent, 10%);
+  }
+}
+
+.scrolls-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: $gray;
+  font-family: $font-mono;
+  font-style: italic;
+}
+
+// Scroll Article (Single Post)
+.scroll-article {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 1rem;
+  }
+}
+
+.scroll-hero-image {
+  margin: -2rem -2rem 2.5rem -2rem;
+  aspect-ratio: 21 / 9;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    margin: -1.5rem -1rem 2rem -1rem;
+    aspect-ratio: 16 / 9;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.scroll-article-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba($black, 0.1);
+}
+
+.scroll-article-meta {
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  color: $gray;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  .scroll-author {
+    &::before {
+      content: "·";
+      margin-right: 0.75rem;
+    }
+  }
+}
+
+.scroll-article-title {
+  font-family: $font-sans;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  color: $black;
+}
+
+.scroll-article-subtitle {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: rgba($black, 0.7);
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.scroll-article-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.scroll-article-body {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: rgba($black, 0.85);
+
+  p {
+    margin-bottom: 1.5rem;
+    max-width: none;
+  }
+
+  h2,
+  h3,
+  h4 {
+    font-family: $font-sans;
+    text-transform: none;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  blockquote {
+    margin: 2rem 0;
+    padding: 1.5rem 2rem;
+    border-left: 3px solid $accent;
+    background: rgba($black, 0.02);
+    font-style: italic;
+    color: rgba($black, 0.75);
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    margin: 2rem 0;
+  }
+
+  a {
+    color: $accent;
+    text-decoration-color: rgba($accent, 0.4);
+
+    &:hover {
+      text-decoration-color: $accent;
+    }
+  }
+
+  ul,
+  ol {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  pre {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba($black, 0.03);
+    overflow-x: auto;
+    font-size: 0.9rem;
+  }
+
+  code {
+    background: rgba($black, 0.05);
+    padding: 0.15rem 0.4rem;
+    font-size: 0.9em;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background: rgba($black, 0.1);
+    margin: 3rem 0;
+  }
+}
+
+.scroll-article-footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba($black, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.scroll-lastmod {
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  color: $gray;
+  margin: 0;
+}
+
+.scroll-back-link {
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  color: $gray;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $accent;
+  }
+}
+
+// Scrolls Layout with Sidebar
+.scrolls-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 3rem;
+  align-items: start;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.scrolls-sidebar {
+  position: sticky;
+  top: 2rem;
+
+  @media (max-width: 900px) {
+    position: static;
+    border-bottom: 1px solid rgba($black, 0.1);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.sidebar-section {
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.sidebar-title {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  text-transform: lowercase;
+  letter-spacing: 0.1em;
+  color: $gray;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba($black, 0.1);
+}
+
+.sidebar-tags {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  @media (max-width: 900px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+}
+
+.sidebar-tag-link {
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  color: rgba($black, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: inline-block;
+
+  &::before {
+    content: "→ ";
+    opacity: 0;
+    transition: opacity 0.2s ease;
+
+    @media (max-width: 900px) {
+      display: none;
+    }
+  }
+
+  &:hover {
+    color: $accent;
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 900px) {
+    padding: 0.3rem 0.6rem;
+    background: rgba($black, 0.04);
+    font-size: 0.8rem;
+
+    &:hover {
+      background: rgba($accent, 0.1);
+    }
+  }
+}
+
+.sidebar-empty {
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  color: $gray;
+  font-style: italic;
+}
+
+.sidebar-note {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  color: $gray;
+  margin: 0;
+}
+
+.scrolls-main {
+  min-width: 0; // Prevent grid blowout
+}
