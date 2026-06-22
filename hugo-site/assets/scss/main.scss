@@ -181,7 +181,7 @@ pre {
   }
 
   .hamburger {
-    display: none;
+    display: flex;
     width: 100%;
     background: $white;
     border: none;
@@ -196,9 +196,42 @@ pre {
     align-items: center;
     justify-content: space-between;
 
-    &:hover {
+    &:hover,
+    &[aria-expanded="true"] {
       background: $black;
       color: $white;
+
+      .hamburger-icon span {
+        background: $white;
+      }
+    }
+
+    .hamburger-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 22px;
+      height: 18px;
+
+      span {
+        display: block;
+        height: 2px;
+        background: $black;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+    }
+
+    &[aria-expanded="true"] .hamburger-icon span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    &[aria-expanded="true"] .hamburger-icon span:nth-child(2) {
+      opacity: 0;
+    }
+
+    &[aria-expanded="true"] .hamburger-icon span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
     }
   }
 
@@ -207,18 +240,23 @@ pre {
     border-top: 1px solid $grid;
 
     .nav-links {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
+      display: none;
+      grid-template-columns: 1fr;
       list-style: none;
       margin: 0 auto;
       padding: 0;
       max-width: 1200px;
 
+      &.open {
+        display: grid;
+      }
+
       li {
-        border-right: 1px solid $grid;
+        border-right: none;
+        border-bottom: 1px solid $grid;
 
         &:first-child {
-          border-left: 1px solid $grid;
+          border-left: none;
         }
       }
 
@@ -245,23 +283,18 @@ pre {
     }
   }
 
-  @media (max-width: 700px) {
-    .hamburger { display: flex; }
+  @media (min-width: 701px) {
+    .hamburger { display: none; }
 
     nav .nav-links {
-      display: none;
-      grid-template-columns: 1fr;
-
-      &.open {
-        display: grid;
-      }
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
 
       li {
-        border-right: none;
-        border-bottom: 1px solid $grid;
+        border-right: 1px solid $grid;
 
         &:first-child {
-          border-left: none;
+          border-left: 1px solid $grid;
         }
       }
     }
