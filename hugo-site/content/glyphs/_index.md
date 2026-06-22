@@ -1,5 +1,5 @@
 ---
-title: "glyphs"
+title: "design (glyphs)"
 ---
 
-systems and meta — visual marks, identity, generative forms
+visual marks, identity, generative forms, and design haikus.

@@ -3,7 +3,7 @@ title: "Love of Noise 2017-2023"
 date: 2023-11-20
 type: "sounds"
 links:
-  bandcamp: "use Subvert.fm instead!"
+  bandcamp: "https://subvert.fm"
   soundcloud: "#"
   subvert cooperative: "#"
 ---

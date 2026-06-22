@@ -2,10 +2,10 @@
 <article class="scroll-article">
   {{ with .Params.image }}
   <div class="scroll-hero-image">
-    <img src="{{ . }}" alt="{{ $.Title }}" />
+    <img src="{{ . | relURL }}" alt="{{ $.Title }}" />
   </div>
   {{ end }}
-  
+
   <header class="scroll-article-header">
     <div class="scroll-article-meta">
       {{ if .Date }}
@@ -36,7 +36,7 @@
     {{ if .Params.lastmod }}
     <p class="scroll-lastmod">last updated: {{ .Params.lastmod | dateFormat "January 2, 2006" }}</p>
     {{ end }}
-    <a href="/scrolls" class="scroll-back-link">← back to scrolls</a>
+    <a href="{{ "/scrolls/index.html" | relURL }}" class="scroll-back-link">← back to scrolls</a>
   </footer>
 </article>
 {{ end }}

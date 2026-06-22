@@ -1,0 +1,28 @@
+{{ define "main" }}
+<div class="container-main">
+  <div class="section-page">
+    <div class="back-link">
+      <a href="{{ "/glyphs/index.html" | relURL }}" class="text-mono">← back to glyphs</a>
+    </div>
+
+    <h1 class="section-title">{{ .Title }}</h1>
+    {{ .Content }}
+
+    {{ if .RegularPages }}
+    <div class="haikus-grid">
+      {{ range .RegularPages }}
+      <article class="haiku-card">
+        {{ if .Params.image }}
+        <img class="haiku-image" src="{{ .Params.image | relURL }}" alt="{{ .Title }}" loading="lazy">
+        {{ end }}
+        <h3 class="haiku-title">{{ .Title }}</h3>
+        {{ if .Date }}
+        <div class="haiku-meta">{{ .Date.Format "2006-01-02" }}</div>
+        {{ end }}
+      </article>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

@@ -1,5 +1,5 @@
 ---
-title: "scrolls"
+title: "writing (scrolls)"
 ---
 
-writing and pedagogy — essays, documentation, teaching
+writing and pedagogy — essays, documentation, and teaching notes.

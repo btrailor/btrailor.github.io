@@ -1,5 +1,5 @@
 ---
-title: "signals"
+title: "sound (signals)"
 ---
 
-sound design, music, and audio programming
+sound design, music, and audio programming.

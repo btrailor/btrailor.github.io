@@ -23,7 +23,7 @@
           {{ $uniqueTags := $tags | uniq | sort }}
           {{ range $uniqueTags }}
           <li>
-            <a href="/tags/{{ . | urlize }}/" class="sidebar-tag-link">{{ . }}</a>
+            <a href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}" class="sidebar-tag-link">{{ . }}</a>
           </li>
           {{ end }}
           {{ if not $uniqueTags }}
@@ -45,7 +45,7 @@
           {{ with .Params.image }}
           <a href="{{ $.RelPermalink }}" class="scroll-image-link">
             <div class="scroll-image">
-              <img src="{{ . }}" alt="{{ $.Title }}" loading="lazy" />
+              <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy" />
             </div>
           </a>
           {{ end }}

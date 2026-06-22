@@ -1,33 +1,38 @@
 {{ define "main" }}
 <div class="container-main">
-  <div class="project-section">
+  <div class="section-page">
     <h1 class="section-title">{{ .Title }}</h1>
     {{ .Content }}
 
     {{ if .Pages }}
-    <div class="project-grid">
+    <div class="card-grid">
       {{ range .Pages }}
-      <div class="project-card">
-        <h3 class="project-title">
-          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-        </h3>
-        {{ if .Date }}
-        <div class="project-meta">{{ .Date.Format "2006" }}</div>
+      {{ $img := "" }}
+      {{ if .Params.image }}{{ $img = .Params.image }}{{ else if .Params.cover }}{{ $img = .Params.cover }}{{ end }}
+      <article class="card">
+        {{ if $img }}
+        <a href="{{ .RelPermalink }}" class="card-media">
+          <img src="{{ $img | relURL }}" alt="" loading="lazy">
+        </a>
         {{ end }}
-        <div class="project-description">
-          {{ .Summary }}
-        </div>
-        <div class="project-links">
-          <a href="{{ .RelPermalink }}">view project</a>
-          {{ with .Params.links }}
-            {{ range $key, $value := . }}
-              {{ if $value }}
-              <a href="{{ $value }}" target="_blank" rel="noopener">{{ $key }}</a>
+        <div class="card-body">
+          <h3 class="card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          {{ if .Date }}
+          <div class="card-meta">{{ .Date.Format "2006" }}</div>
+          {{ end }}
+          <p class="card-summary">{{ .Summary }}</p>
+          <div class="card-actions">
+            <a href="{{ .RelPermalink }}">view project</a>
+            {{ with .Params.links }}
+              {{ range $key, $value := . }}
+                {{ if $value }}
+                <a href="{{ $value }}" target="_blank" rel="noopener">{{ $key }}</a>
+                {{ end }}
               {{ end }}
             {{ end }}
-          {{ end }}
+          </div>
         </div>
-      </div>
+      </article>
       {{ end }}
     </div>
     {{ end }}

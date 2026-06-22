@@ -1,0 +1,60 @@
+{{ define "main" }}
+<div class="container-main">
+  <div class="section-page">
+    <h1 class="section-title">{{ .Title }}</h1>
+    {{ .Content }}
+
+    {{ $allPages := .RegularPagesRecursive }}
+    {{ $projectPages := where $allPages "Section" "glyphs" }}
+    {{ $projectPages := where $projectPages "File.Dir" "ne" "glyphs/design-haikus/" }}
+
+    {{ if $projectPages }}
+    <div class="card-grid">
+      {{ range $projectPages }}
+      {{ $img := "" }}
+      {{ if .Params.image }}{{ $img = .Params.image }}{{ else if .Params.cover }}{{ $img = .Params.cover }}{{ end }}
+      <article class="card">
+        {{ if $img }}
+        <a href="{{ .RelPermalink }}" class="card-media">
+          <img src="{{ $img | relURL }}" alt="" loading="lazy">
+        </a>
+        {{ end }}
+        <div class="card-body">
+          <h3 class="card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          {{ if .Date }}
+          <div class="card-meta">{{ .Date.Format "2006" }}</div>
+          {{ end }}
+          <p class="card-summary">{{ .Summary }}</p>
+          <div class="card-actions">
+            <a href="{{ .RelPermalink }}">view project</a>
+          </div>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ with .GetPage "glyphs/design-haikus" }}
+    <section class="haikus-section" aria-labelledby="haikus-heading">
+      <h2 id="haikus-heading" class="section-label">design haikus</h2>
+      <div class="haikus-grid">
+        {{ range .RegularPages }}
+        <article class="haiku-card">
+          {{ if .Params.image }}
+          <a href="{{ .Params.image | relURL }}" class="haiku-link" target="_blank" rel="noopener">
+            <img class="haiku-image" src="{{ .Params.image | relURL }}" alt="{{ .Title }}" loading="lazy">
+          </a>
+          {{ end }}
+          <h3 class="haiku-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          {{ if .Date }}
+          <div class="haiku-meta">{{ .Date.Format "2006-01-02" }}</div>
+          {{ end }}
+        </article>
+        {{ end }}
+      </div>
+      <p style="margin-top: 1rem;"><a href="{{ .RelPermalink }}" class="text-mono">→ see all haikus</a></p>
+    </section>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

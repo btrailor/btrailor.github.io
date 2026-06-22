@@ -1,5 +1,5 @@
 ---
-title: "sigils"
+title: "code (sigils)"
 ---
 
-code and infrastructure — instruments, tools, and systems
+code and infrastructure — instruments, tools, and systems.

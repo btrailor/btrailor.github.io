@@ -1,0 +1,26 @@
+{{ define "main" }}
+<div class="container-main">
+  <article class="single-project haiku-single">
+    <header class="single-header">
+      <h1>{{ .Title }}</h1>
+      {{ if .Date }}
+      <div class="single-meta text-gray">{{ .Date.Format "January 2006" }}</div>
+      {{ end }}
+    </header>
+
+    {{ if .Params.image }}
+    <figure class="haiku-full-image">
+      <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" loading="lazy">
+    </figure>
+    {{ end }}
+
+    <div class="single-content">
+      {{ .Content }}
+    </div>
+
+    <div class="back-link">
+      <a href="{{ ("/glyphs/index.html") | relURL }}" class="text-mono">← back to glyphs</a>
+    </div>
+  </article>
+</div>
+{{ end }}

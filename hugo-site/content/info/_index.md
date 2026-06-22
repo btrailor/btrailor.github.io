@@ -1,5 +1,5 @@
 ---
-title: "Info"
+title: "info"
 ---
 
 ## About

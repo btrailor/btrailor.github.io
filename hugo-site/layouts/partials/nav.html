@@ -1,17 +1,22 @@
 <header class="site-header">
   <div class="banner-container">
-    <img src="/images/glitch-banner(white).png" alt="Digital Artifacts Banner" class="banner-image">
-    <a href="/" class="logo-overlay">
-      <img src="/images/Digital_Artifacts_Logo(no_background).png" alt="Digital Artifacts Logo" class="site-logo">
+    <img src="{{ "/images/glitch-banner(white).png" | relURL }}" alt="Digital Artifacts Banner" class="banner-image">
+    <a href="{{ "index.html" | relURL }}" class="logo-overlay" aria-label="home">
+      <img src="{{ "/images/Digital_Artifacts_Logo(no_background).png" | relURL }}" alt="Digital Artifacts Logo" class="site-logo">
     </a>
   </div>
-  <nav>
-    <ul class="nav-links">
-      <li><a href="/glyphs" {{ if eq .Section "glyphs" }}class="active"{{ end }}>glyphs</a></li>
-      <li><a href="/sigils" {{ if eq .Section "sigils" }}class="active"{{ end }}>sigils</a></li>
-      <li><a href="/scrolls" {{ if eq .Section "scrolls" }}class="active"{{ end }}>scrolls</a></li>
-      <li><a href="/signals" {{ if eq .Section "signals" }}class="active"{{ end }}>signals</a></li>
-      <li><a href="/info" {{ if eq .Section "info" }}class="active"{{ end }}>info</a></li>
+  <button class="hamburger" aria-expanded="false" aria-controls="primary-nav-menu" aria-label="toggle navigation">
+    <span class="hamburger-label">menu</span>
+    <span class="hamburger-icon" aria-hidden="true">≡</span>
+  </button>
+  <nav id="primary-nav" aria-label="primary">
+    <ul class="nav-links" id="primary-nav-menu">
+      <li><a href="{{ "index.html" | relURL }}" {{ if .IsHome }}class="active"{{ end }}>home</a></li>
+      <li><a href="{{ "/glyphs/index.html" | relURL }}" {{ if eq .Section "glyphs" }}class="active"{{ end }}>design (glyphs)</a></li>
+      <li><a href="{{ "/sigils/index.html" | relURL }}" {{ if eq .Section "sigils" }}class="active"{{ end }}>code (sigils)</a></li>
+      <li><a href="{{ "/scrolls/index.html" | relURL }}" {{ if eq .Section "scrolls" }}class="active"{{ end }}>writing (scrolls)</a></li>
+      <li><a href="{{ "/signals/index.html" | relURL }}" {{ if eq .Section "signals" }}class="active"{{ end }}>sound (signals)</a></li>
+      <li><a href="{{ "/info/index.html" | relURL }}" {{ if eq .Section "info" }}class="active"{{ end }}>info</a></li>
     </ul>
   </nav>
 </header>

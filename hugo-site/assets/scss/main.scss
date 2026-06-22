@@ -5,14 +5,28 @@
 // Color Palette - Minimal but intentional
 $black: #0a0a0a;
 $white: #fafafa;
-$gray: #888;
+$gray: #6f6f6f;
 $accent: rgb(240, 144, 59); // Warm orange
 $accent-alt: rgb(227, 136, 87); // Secondary orange
 $primary: rgb(207, 171, 42); // Gold accent
+$grid: rgba(10, 10, 10, 0.08);
+$tile1: rgba(207, 171, 42, 0.06);
+$tile2: rgba(240, 144, 59, 0.04);
 
 // Typography
 $font-mono: "Courier New", "Courier", monospace;
 $font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+
+ul,
+ol {
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+li {
+  margin-bottom: 0.35rem;
+  padding-left: 0.25rem;
+}
 
 // ====================================
 // GLOBAL RESET & BASE
@@ -129,13 +143,11 @@ pre {
   .banner-container {
     position: relative;
     width: 100%;
-    height: 250px;
+    height: clamp(170px, 24vw, 280px);
     overflow: hidden;
-    background: $white;
-
-    @media (max-width: 768px) {
-      height: 150px;
-    }
+    background:
+      repeating-linear-gradient(90deg, $white 0, $white 80px, $grid 80px, $grid 81px),
+      repeating-linear-gradient(45deg, $tile1, $tile1 20px, $tile2 20px, $tile2 40px);
 
     .banner-image {
       width: 100%;
@@ -148,95 +160,108 @@ pre {
     .logo-overlay {
       position: absolute;
       top: 50%;
-      left: 2rem;
+      left: clamp(1rem, 3vw, 2.5rem);
       transform: translateY(-50%);
       display: block;
       text-decoration: none;
-      transition: opacity 0.2s ease;
+      transition: transform 0.2s ease, opacity 0.2s ease;
       z-index: 10;
-
-      @media (max-width: 768px) {
-        left: 1rem;
-      }
 
       &:hover {
         opacity: 0.9;
+        transform: translateY(-50%) scale(1.02);
       }
 
       .site-logo {
-        height: 160px;
+        height: clamp(90px, 14vw, 160px);
         width: auto;
         filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
-
-        @media (max-width: 768px) {
-          height: 100px;
-        }
       }
+    }
+  }
+
+  .hamburger {
+    display: none;
+    width: 100%;
+    background: $white;
+    border: none;
+    border-bottom: 1px solid $grid;
+    border-top: 1px solid $grid;
+    padding: 0.8rem 1rem;
+    font-family: $font-mono;
+    font-size: 0.95rem;
+    text-transform: lowercase;
+    color: $black;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover {
+      background: $black;
+      color: $white;
     }
   }
 
   nav {
     background: $white;
-    padding: 1rem 2rem;
-    border-top: 1px solid $gray;
-
-    @media (max-width: 768px) {
-      padding: 0.75rem 1rem;
-    }
+    border-top: 1px solid $grid;
 
     .nav-links {
-      display: flex;
-      gap: 2rem;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
       list-style: none;
-      margin: 0;
+      margin: 0 auto;
       padding: 0;
       max-width: 1200px;
-      margin: 0 auto;
 
-      @media (max-width: 768px) {
-        gap: 0.75rem;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-      }
+      li {
+        border-right: 1px solid $grid;
 
-      @media (max-width: 480px) {
-        gap: 0.5rem;
+        &:first-child {
+          border-left: 1px solid $grid;
+        }
       }
 
       a {
+        display: block;
         text-decoration: none;
         font-family: $font-mono;
-        font-size: 0.95rem;
-        position: relative;
+        font-size: 0.85rem;
+        text-transform: lowercase;
+        padding: 0.8rem 1rem;
         color: $black;
-        transition: color 0.2s ease;
-
-        @media (max-width: 768px) {
-          font-size: 0.85rem;
-        }
-
-        @media (max-width: 480px) {
-          font-size: 0.8rem;
-        }
+        transition: background 0.15s ease, color 0.15s ease;
 
         &:hover {
-          color: $accent;
-
-          &::before {
-            content: ">";
-            position: absolute;
-            left: -12px;
-            color: $accent;
-
-            @media (max-width: 768px) {
-              content: "";
-            }
-          }
+          background: $black;
+          color: $white;
         }
 
         &.active {
           color: $accent;
           font-weight: 700;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 700px) {
+    .hamburger { display: flex; }
+
+    nav .nav-links {
+      display: none;
+      grid-template-columns: 1fr;
+
+      &.open {
+        display: grid;
+      }
+
+      li {
+        border-right: none;
+        border-bottom: 1px solid $grid;
+
+        &:first-child {
+          border-left: none;
         }
       }
     }
@@ -248,110 +273,30 @@ pre {
 // ====================================
 
 .home-hero {
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; // Changed from center to start
-  padding: 2rem 2rem 4rem; // Add top padding for canvas
-  overflow-x: hidden; // Only hide horizontal overflow
-  overflow-y: visible; // Allow vertical overflow
-  position: relative;
-
-  @media (max-width: 768px) {
-    min-height: 60vh;
-    padding: 1.5rem 1rem 2rem;
-  }
-
-  @media (max-width: 480px) {
-    padding: 1rem 1rem 2rem;
-  }
-
-  #mycelial-canvas {
-    position: absolute;
-    top: 8rem; // Push canvas further down
-    left: 0;
-    width: 100%;
-    height: 500px; // Increased height to avoid clipping
-    z-index: 0;
-    pointer-events: none; // Allow clicking through to links
-
-    @media (max-width: 768px) {
-      top: 5rem;
-      height: 320px;
-    }
-
-    @media (max-width: 480px) {
-      top: 3rem;
-      height: 280px; // Increased from 220px to prevent clipping
-    }
-
-    canvas {
-      display: block;
-    }
-  }
+  min-height: auto;
+  padding: clamp(2rem, 5vw, 4rem) 0 clamp(3rem, 8vw, 5rem);
+  overflow-x: hidden;
 
   .hero-content {
-    position: relative;
-    z-index: 1;
-    padding-top: 3rem;
-
-    @media (max-width: 768px) {
-      padding-top: 2rem;
-    }
-
-    @media (max-width: 480px) {
-      padding-top: 1.5rem;
-    }
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 2.5rem);
   }
 
   .hero-poem {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0.75rem 1rem;
     font-family: $font-mono;
-    margin-bottom: 2rem;
-    max-width: 100%;
+    font-size: clamp(1.4rem, 3.8vw, 2.2rem);
+    line-height: 1.2;
+    margin-bottom: clamp(2rem, 5vw, 3rem);
 
     .poem-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 1rem;
-      margin-bottom: 0.5rem;
+      grid-column: 1 / -1;
+      display: contents;
       animation: fadeInUp 0.8s ease forwards;
       opacity: 0;
-
-      &.indent-1 {
-        padding-left: 4rem;
-      }
-      &.indent-2 {
-        padding-left: 8rem;
-      }
-      &.indent-3 {
-        padding-left: 12rem;
-      }
-
-      @media (max-width: 768px) {
-        &.indent-1 {
-          padding-left: 2rem;
-        }
-        &.indent-2 {
-          padding-left: 4rem;
-        }
-        &.indent-3 {
-          padding-left: 6rem;
-        }
-      }
-
-      @media (max-width: 480px) {
-        gap: 0.5rem;
-        &.indent-1 {
-          padding-left: 1rem;
-        }
-        &.indent-2 {
-          padding-left: 2rem;
-        }
-        &.indent-3 {
-          padding-left: 3rem;
-        }
-      }
 
       @for $i from 1 through 7 {
         &:nth-child(#{$i}) {
@@ -360,42 +305,362 @@ pre {
       }
     }
 
-    .glitch-link {
-      font-size: clamp(1.8rem, 6vw, 4.5rem) !important;
-      font-weight: 700 !important;
-      line-height: 1.1;
+    .poem-link {
+      grid-column: 1 / span 3;
+      font-weight: 700;
+      color: $accent;
       text-decoration: none;
-      display: inline-block;
+      text-transform: lowercase;
 
-      @media (max-width: 480px) {
-        font-size: clamp(1.4rem, 8vw, 2rem) !important;
+      &:hover {
+        text-decoration: line-through;
+        text-decoration-color: $primary;
+      }
+
+      @media (max-width: 700px) {
+        grid-column: 1 / -1;
       }
     }
 
     .poem-whisper {
-      font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+      grid-column: 5 / span 7;
       color: $gray;
+      font-size: 0.75em;
       font-weight: 400;
-      font-style: italic;
-      letter-spacing: 0.05em;
-      white-space: nowrap;
+      align-self: end;
 
-      @media (max-width: 480px) {
-        font-size: 0.65rem;
+      @media (max-width: 700px) {
+        grid-column: 1 / -1;
       }
     }
   }
 
-  // Keep old hero-text for backwards compatibility
-  .hero-text {
+  .hero-subtitle {
     font-family: $font-mono;
-    font-size: clamp(2rem, 8vw, 6rem);
-    line-height: 1.1;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    max-width: 100%;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    color: $gray;
+    line-height: 1.5;
+  }
+}
 
-    .line {
+// ====================================
+// FEATURED WORK STRIP
+// ====================================
+
+.featured-work {
+  background: rgba($black, 0.02);
+  border-top: 2px solid $black;
+  border-bottom: 2px solid $black;
+  padding: clamp(2rem, 5vw, 4rem) 0;
+
+  .section-label {
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    text-transform: lowercase;
+    letter-spacing: 0.12em;
+    color: $gray;
+    border-bottom: 2px solid $black;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 520px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .featured-card {
+    border: 2px solid $black;
+    padding: 1rem;
+    background: $white;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(90deg, $primary 0, $primary 2px, transparent 2px, transparent 10px);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    &:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 3px 3px 0 $black;
+
+      &::before {
+        opacity: 0.08;
+      }
+    }
+
+    .card-image {
+      width: calc(100% + 2rem);
+      height: 130px;
+      object-fit: cover;
+      display: block;
+      margin: -1rem -1rem 0.75rem -1rem;
+      border-bottom: 2px solid $black;
+      background: $tile2;
+    }
+
+    .card-meta {
+      font-family: $font-mono;
+      font-size: 0.7rem;
+      color: $primary;
+      margin-bottom: 0.4rem;
+      position: relative;
+      text-transform: lowercase;
+    }
+
+    .card-title {
+      font-family: $font-mono;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      position: relative;
+      text-transform: lowercase;
+    }
+
+    .card-summary {
+      font-size: 0.85rem;
+      color: $gray;
+      position: relative;
+      margin: 0;
+
+      ul,
+      ol {
+        padding-left: 1.25rem;
+        margin-bottom: 0.75rem;
+        margin-top: 0.5rem;
+      }
+
+      li {
+        margin-bottom: 0.35rem;
+      }
+    }
+  }
+}
+
+// ====================================
+// GLYPHS / DESIGN HAIKUS
+// ====================================
+
+.haiku-single {
+  .haiku-full-image {
+    margin: 1.5rem 0;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border: 2px solid rgba($black, 0.1);
+    }
+  }
+}
+
+.haikus-grid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 520px) {
+    grid-template-columns: 1fr;
+  }
+
+  .haiku-card {
+    border: 2px solid $black;
+    padding: 1rem;
+    background: $white;
+    overflow: hidden;
+
+    .haiku-image {
+      width: calc(100% + 2rem);
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      margin: -1rem -1rem 0.75rem -1rem;
+      border-bottom: 2px solid $black;
+      background: $tile1;
+    }
+
+    .haiku-title {
+      font-family: $font-mono;
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.3;
+      text-transform: lowercase;
+      color: $black;
+      margin: 0.75rem 0 0 0;
+    }
+
+    .haiku-meta {
+      font-family: $font-mono;
+      font-size: 0.7rem;
+      color: $gray;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+// ====================================
+// Mycelial Canvas (single glyph page)
+// ====================================
+
+.mycelial-canvas {
+  width: 100%;
+  height: 70vh;
+  min-height: 400px;
+  margin: 2rem 0;
+  border: 2px solid $black;
+  background: $white;
+  overflow: hidden;
+
+  canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  @media (max-width: 768px) {
+    height: 50vh;
+    min-height: 300px;
+  }
+}
+
+// ====================================
+// LEGACY HOME PAGE STYLES
+// ====================================
+
+.legacy-home {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 2rem 2rem 4rem;
+  overflow-x: hidden;
+  overflow-y: visible;
+  position: relative;
+}
+
+.legacy-poem {
+  font-family: $font-mono;
+  margin-bottom: 2rem;
+  max-width: 100%;
+
+  .poem-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0;
+
+    &.indent-1 {
+      padding-left: 4rem;
+    }
+    &.indent-2 {
+      padding-left: 8rem;
+    }
+    &.indent-3 {
+      padding-left: 12rem;
+    }
+
+    @media (max-width: 768px) {
+      &.indent-1 {
+        padding-left: 2rem;
+      }
+      &.indent-2 {
+        padding-left: 4rem;
+      }
+      &.indent-3 {
+        padding-left: 6rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      gap: 0.5rem;
+      &.indent-1 {
+        padding-left: 1rem;
+      }
+      &.indent-2 {
+        padding-left: 2rem;
+      }
+      &.indent-3 {
+        padding-left: 3rem;
+      }
+    }
+
+    @for $i from 1 through 7 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.15}s;
+      }
+    }
+  }
+
+  .glitch-link {
+    font-size: clamp(1.8rem, 6vw, 4.5rem) !important;
+    font-weight: 700 !important;
+    line-height: 1.1;
+    text-decoration: none;
+    display: inline-block;
+
+    @media (max-width: 480px) {
+      font-size: clamp(1.4rem, 8vw, 2rem) !important;
+    }
+  }
+
+  .poem-whisper {
+    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+    color: $gray;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+
+    @media (max-width: 480px) {
+      font-size: 0.65rem;
+    }
+  }
+
+  .featured-empty {
+    font-family: $font-mono;
+    font-size: 0.9rem;
+    color: $gray;
+    border: 1px dashed $grid;
+    padding: 1rem;
+    margin: 0;
+  }
+}
+
+// Keep old hero-text for backwards compatibility
+.hero-text {
+  font-family: $font-mono;
+  font-size: clamp(2rem, 8vw, 6rem);
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  max-width: 100%;
+
+  .line {
       display: block;
       animation: fadeInUp 0.8s ease forwards;
       opacity: 0;
@@ -474,9 +739,8 @@ pre {
   }
 
   .enter-arrow {
-    font-size: 2rem;
-    animation: bounce 2s infinite;
-  }
+  font-size: 2rem;
+  animation: bounce 2s infinite;
 }
 
 @keyframes fadeInUp {
@@ -501,11 +765,11 @@ pre {
 }
 
 // ====================================
-// PROJECT GRID - Portfolio Sections
+// CARD GRID - Reusable portfolio cards
 // ====================================
 
-.project-section {
-  margin: 4rem 0;
+.section-page {
+  padding: 2rem 0;
 
   .section-title {
     border-bottom: 2px solid $black;
@@ -514,75 +778,248 @@ pre {
   }
 }
 
-.project-grid {
+.card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
   margin-top: 2rem;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  @media (max-width: 480px) {
-    gap: 1rem;
+    gap: 1.25rem;
   }
 }
 
-.project-card {
+.card {
+  display: flex;
+  flex-direction: column;
   border: 2px solid $black;
-  padding: 1.5rem;
-  transition: all 0.2s ease;
   background: $white;
-
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 
   &:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 4px 4px 0 $black;
+    transform: translate(-3px, -3px);
+    box-shadow: 3px 3px 0 $black;
+  }
 
-    @media (max-width: 768px) {
-      transform: translate(-2px, -2px);
-      box-shadow: 2px 2px 0 $black;
+  .card-media {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-bottom: 2px solid $black;
+    background: $tile1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.03);
     }
   }
 
-  .project-title {
-    font-family: $font-mono;
-    font-size: clamp(1rem, 3vw, 1.2rem);
-    margin-bottom: 0.5rem;
-  }
-
-  .project-meta {
-    font-size: 0.9rem;
-    color: $gray;
-    margin-bottom: 1rem;
-  }
-
-  .project-description {
-    margin-bottom: 1rem;
-    font-size: clamp(0.9rem, 2.5vw, 1rem);
-  }
-
-  .project-links {
+  .card-body {
+    padding: 1.25rem;
+    flex: 1;
     display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+    flex-direction: column;
 
-    @media (max-width: 480px) {
-      gap: 0.5rem;
+    ul,
+    ol {
+      padding-left: 1.25rem;
+      margin-bottom: 0.75rem;
+      margin-top: 0.5rem;
     }
+
+    li {
+      margin-bottom: 0.35rem;
+    }
+  }
+
+  .card-title {
+    font-family: $font-mono;
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+    line-height: 1.25;
+    text-transform: lowercase;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        color: $accent;
+      }
+    }
+  }
+
+  .card-meta {
+    font-size: 0.8rem;
+    color: $gray;
+    margin-bottom: 0.75rem;
+    font-family: $font-mono;
+  }
+
+  .card-summary {
+    font-size: 0.9rem;
+    color: $black;
+    margin-bottom: 1rem;
+    flex: 1;
+
+    ul,
+    ol {
+      padding-left: 1.25rem;
+      margin-bottom: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    li {
+      margin-bottom: 0.35rem;
+    }
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: auto;
 
     a {
       font-family: $font-mono;
-      font-size: clamp(0.75rem, 2vw, 0.85rem);
+      font-size: 0.75rem;
+      text-decoration: none;
+      padding: 0.2rem 0.4rem;
+      border: 1px solid $black;
+
+      &:hover {
+        background: $black;
+        color: $white;
+      }
 
       &::before {
         content: "→ ";
       }
+    }
+  }
+}
+
+// Legacy aliases for existing templates
+.project-section {
+  @extend .section-page;
+}
+
+.project-grid {
+  @extend .card-grid;
+}
+
+.project-card {
+  @extend .card;
+
+  .project-title {
+    @extend .card-title;
+  }
+
+  .project-meta {
+    @extend .card-meta;
+  }
+
+  .project-description {
+    @extend .card-summary;
+  }
+
+  .project-links {
+    @extend .card-actions;
+  }
+}
+
+// ====================================
+// SINGLE PROJECT PAGE
+// ====================================
+
+.single-project {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+
+  .single-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid $black;
+
+    h1 {
+      margin-bottom: 0.5rem;
+      text-transform: lowercase;
+    }
+  }
+
+  .single-meta {
+    font-family: $font-mono;
+    font-size: 0.85rem;
+    color: $gray;
+  }
+
+  .single-content {
+    font-size: 1rem;
+    line-height: 1.7;
+
+    p,
+    ul,
+    ol {
+      margin-bottom: 1.25rem;
+    }
+
+    ul,
+    ol {
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin-bottom: 0.35rem;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 1.5rem 0;
+      border: 1px solid rgba($black, 0.1);
+    }
+
+    h2,
+    h3,
+    h4 {
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  .project-links {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    a {
+      font-family: $font-mono;
+      font-size: 0.85rem;
+
+      &::before {
+        content: "→ ";
+      }
+    }
+  }
+
+  .back-link {
+    margin-top: 2rem;
+
+    a {
+      font-family: $font-mono;
+      font-size: 0.85rem;
     }
   }
 }

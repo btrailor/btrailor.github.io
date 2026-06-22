@@ -3,9 +3,10 @@
   <article class="single-project">
     <header class="single-header">
       <h1>{{ .Title }}</h1>
-      {{ if or .Date .Params.medium .Params.tech }}
+      {{ if or .Date .Params.medium .Params.tech .Params.type }}
       <div class="single-meta text-gray">
         {{ .Date.Format "January 2006" }}
+        {{ with .Params.type }} · {{ . }}{{ end }}
         {{ with .Params.medium }} · {{ . }}{{ end }}
         {{ with .Params.tech }}
           {{ range . }} · {{ . }}{{ end }}
@@ -18,6 +19,10 @@
       {{ .Content }}
     </div>
 
+    {{ if eq .Params.project_type "generative" }}
+    <script src="{{ "javascript/mycelial_network.js" | relURL }}?v={{ now.Unix }}"></script>
+    {{ end }}
+
     {{ with .Params.links }}
     <div class="project-links">
       {{ range $key, $value := . }}
@@ -29,7 +34,7 @@
     {{ end }}
 
     <div class="back-link">
-      <a href="{{ (printf "/%s/index.html" .Section) | relURL }}" class="text-mono">← back to {{ .Section }}</a>
+      <a href="{{ "/glyphs/index.html" | relURL }}" class="text-mono">← back to glyphs</a>
     </div>
   </article>
 </div>

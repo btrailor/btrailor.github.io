@@ -3,7 +3,7 @@ title: "Weaver | Union"
 date: 2024-03-15
 type: "sounds"
 links:
-  bandcamp: "Use subvert.fm instead!"
+  bandcamp: "https://subvert.fm"
   Subvert Cooperative: "#"
 ---
 

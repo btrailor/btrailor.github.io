@@ -21,7 +21,7 @@ let palette = {
 
 function setup() {
   let container = document.getElementById("mycelial-canvas");
-  let canvas = createCanvas(windowWidth, container.offsetHeight);
+  let canvas = createCanvas(container.offsetWidth, container.offsetHeight);
   canvas.parent("mycelial-canvas");
   background(palette.background);
 
@@ -317,7 +317,7 @@ class Signal {
 
 function windowResized() {
   let container = document.getElementById("mycelial-canvas");
-  resizeCanvas(windowWidth, container.offsetHeight);
+  resizeCanvas(container.offsetWidth, container.offsetHeight);
   // Clear and restart the network when window resizes significantly
   nodes = [];
   branches = [];

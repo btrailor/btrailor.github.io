@@ -6,3 +6,7 @@ _site
 node_modules/
 .env
 # test
+mockups/
+public/
+public-file-preview/
+resources/

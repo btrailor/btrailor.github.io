@@ -1,4 +1,4 @@
-baseURL = 'https://digitalartifacts.media/'
+baseURL = 'https://digitalartifacts.studio/'
 languageCode = 'en-us'
 title = 'DIGITAL ARTIFACTS'
 
@@ -8,7 +8,7 @@ enableInlineShortcodes = true
 [params]
   email = 'brett.gershon@icloud.com'
   description = 'sound + code + image + word — a collection of digital artifacts'
-  twitter_username = 'btrailor'
+  instagram_username = 'brettgershon'
   github_username = 'btrailor'
   # Add your music platform URLs here
   # bandcamp_url = 'https://yourusername.bandcamp.com'
