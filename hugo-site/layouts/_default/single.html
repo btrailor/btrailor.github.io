@@ -29,7 +29,7 @@
     {{ end }}
 
     <div class="back-link">
-      <a href="{{ (printf "/%s/index.html" .Section) | relURL }}" class="text-mono">← back to {{ .Section }}</a>
+      <a href="{{ (printf "/%s/" .Section) | relURL }}" class="text-mono">← back to {{ .Section }}</a>
     </div>
   </article>
 </div>

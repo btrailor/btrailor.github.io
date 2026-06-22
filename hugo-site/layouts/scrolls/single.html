@@ -36,7 +36,7 @@
     {{ if .Params.lastmod }}
     <p class="scroll-lastmod">last updated: {{ .Params.lastmod | dateFormat "January 2, 2006" }}</p>
     {{ end }}
-    <a href="{{ "/scrolls/index.html" | relURL }}" class="scroll-back-link">← back to scrolls</a>
+    <a href="{{ "/scrolls/" | relURL }}" class="scroll-back-link">← back to scrolls</a>
   </footer>
 </article>
 {{ end }}
