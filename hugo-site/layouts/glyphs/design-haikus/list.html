@@ -11,7 +11,7 @@
     {{ if .RegularPages }}
     <div class="haikus-grid">
       {{ range .RegularPages }}
-      <article class="haiku-card">
+      <a class="haiku-card" href="{{ .RelPermalink }}">
         {{ if .Params.image }}
         <img class="haiku-image" src="{{ .Params.image | relURL }}" alt="{{ .Title }}" loading="lazy">
         {{ end }}
@@ -19,7 +19,7 @@
         {{ if .Date }}
         <div class="haiku-meta">{{ .Date.Format "2006-01-02" }}</div>
         {{ end }}
-      </article>
+      </a>
       {{ end }}
     </div>
     {{ end }}

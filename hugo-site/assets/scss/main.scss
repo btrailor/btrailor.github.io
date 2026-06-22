@@ -531,6 +531,7 @@ pre {
 }
 
 .haikus-grid {
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
   margin-top: 2rem;
@@ -544,14 +545,35 @@ pre {
   }
 
   .haiku-card {
+    display: block;
     border: 2px solid $black;
     padding: 1rem;
     background: $white;
     overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s ease, transform 0.15s ease;
+
+    &:hover {
+      background: $black;
+      color: $white;
+
+      .haiku-image {
+        border-bottom-color: $white;
+      }
+
+      .haiku-title {
+        color: $white;
+      }
+
+      .haiku-meta {
+        color: rgba(250, 250, 250, 0.7);
+      }
+    }
 
     .haiku-image {
       width: calc(100% + 2rem);
-      aspect-ratio: 1 / 1;
+      height: 160px;
       object-fit: cover;
       display: block;
       margin: -1rem -1rem 0.75rem -1rem;
@@ -567,6 +589,7 @@ pre {
       text-transform: lowercase;
       color: $black;
       margin: 0.75rem 0 0 0;
+      transition: color 0.15s ease;
     }
 
     .haiku-meta {
@@ -574,6 +597,7 @@ pre {
       font-size: 0.7rem;
       color: $gray;
       margin-top: 0.5rem;
+      transition: color 0.15s ease;
     }
   }
 }
