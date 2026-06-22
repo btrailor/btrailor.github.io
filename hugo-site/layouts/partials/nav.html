@@ -5,14 +5,15 @@
       <img src="{{ "/images/Digital_Artifacts_Logo(no_background).png" | relURL }}" alt="Digital Artifacts Logo" class="site-logo">
     </a>
   </div>
-  <button class="hamburger" aria-expanded="false" aria-controls="primary-nav-menu" aria-label="toggle navigation">
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden aria-hidden="true">
+  <label for="nav-toggle" class="hamburger" aria-label="toggle navigation" aria-controls="primary-nav-menu" role="button">
     <span class="hamburger-label">menu</span>
     <span class="hamburger-icon" aria-hidden="true">
       <span></span>
       <span></span>
       <span></span>
     </span>
-  </button>
+  </label>
   <nav id="primary-nav" aria-label="primary">
     <ul class="nav-links" id="primary-nav-menu">
       <li><a href="{{ "/" | relURL }}" {{ if .IsHome }}class="active"{{ end }}>home</a></li>

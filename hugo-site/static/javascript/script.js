@@ -2,24 +2,22 @@
 (function () {
   'use strict';
 
-  function init() {
-    // Mobile hamburger toggle
-    var hamburger = document.querySelector('.hamburger');
-    var mobileMenu = document.getElementById('primary-nav-menu');
-
-    if (hamburger && mobileMenu) {
-      hamburger.addEventListener('click', function () {
-        var expanded = hamburger.getAttribute('aria-expanded') === 'true';
-        mobileMenu.classList.toggle('open');
-        hamburger.classList.toggle('open');
-        hamburger.setAttribute('aria-expanded', String(!expanded));
-      });
-    }
-  }
-
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
+  }
+
+  function init() {
+    // Mobile nav toggle — core interaction is pure CSS via checkbox + label.
+    // This JS only enhances accessibility states where supported.
+    var toggle = document.getElementById('nav-toggle');
+    var hamburger = document.querySelector('.hamburger');
+
+    if (toggle && hamburger) {
+      toggle.addEventListener('change', function () {
+        hamburger.setAttribute('aria-expanded', String(toggle.checked));
+      });
+    }
   }
 })();
