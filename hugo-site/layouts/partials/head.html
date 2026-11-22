@@ -1,21 +1,53 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
-  <meta property="og:title" content="{{ .Site.Title }}" />
+
+  {{/* Social preview metadata (Open Graph + Twitter card).
+       The site is served over https behind Cloudflare, so every emitted URL is
+       forced to https even when Hugo's baseURL resolves to http. */}}
+  {{ $ogTitle := .Title }}
+  {{ if not $ogTitle }}{{ $ogTitle = .Site.Title }}{{ end }}
+  {{ $ogURL := replace .Permalink "http://" "https://" }}
+  {{ $ogType := "website" }}
+  {{ if .IsPage }}{{ $ogType = "article" }}{{ end }}
+  {{ $ogDesc := .Description }}
+  {{ if not $ogDesc }}{{ $ogDesc = .Site.Params.description }}{{ end }}
+  {{ if gt (len $ogDesc) 200 }}
+    {{ $cut := replaceRE "\\s+\\S*$" "" (slicestr $ogDesc 0 200) }}
+    {{ $ogDesc = printf "%s…" (trim $cut " ") }}
+  {{ end }}
+  {{ $ogImage := "" }}
+  {{ with .Params.image }}{{ $ogImage = replace (. | absURL) "http://" "https://" }}{{ end }}
+  {{ $twitterCard := "summary" }}
+  {{ if $ogImage }}{{ $twitterCard = "summary_large_image" }}{{ end }}
+
+  <meta property="og:title" content="{{ $ogTitle }}" />
   <meta property="og:site_name" content="{{ .Site.Title }}" />
-  <meta property="og:url" content="{{ .Site.BaseURL }}" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="{{ .Site.Params.description }}" />
+  <meta property="og:url" content="{{ $ogURL }}" />
+  <meta property="og:type" content="{{ $ogType }}" />
+  <meta property="og:description" content="{{ $ogDesc }}" />
+  {{ with $ogImage }}
+  <meta property="og:image" content="{{ . }}" />
+  <meta property="og:image:alt" content="{{ $ogTitle }}" />
+  {{ end }}
+  {{ if eq $ogType "article" }}
+    {{ with .Date }}<meta property="article:published_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}" />{{ end }}
+    {{ with .Params.author }}<meta property="article:author" content="{{ . }}" />{{ end }}
+  {{ end }}
+
+  <meta name="twitter:card" content="{{ $twitterCard }}" />
+  <meta name="twitter:title" content="{{ $ogTitle }}" />
+  <meta name="twitter:url" content="{{ $ogURL }}" />
+  <meta name="twitter:description" content="{{ $ogDesc }}" />
   {{ with .Site.Params.instagram_username }}
-  <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@{{ . }}" />
   <meta name="twitter:creator" content="@{{ . }}" />
-  <meta name="twitter:title" content="{{ $.Site.Title }}" />
-  <meta name="twitter:url" content="{{ $.Permalink }}" />
-  <meta name="twitter:description" content="{{ $.Site.Params.description }}" />
   {{ end }}
+
+  <meta name="description" content="{{ $ogDesc }}" />
+  <link rel="canonical" href="{{ $ogURL }}" />
 
   {{ $options := (dict "targetPath" "css/style.css" "outputStyle" "compressed"
   "includePaths" (slice "node_modules")) }} {{ $style := resources.Get

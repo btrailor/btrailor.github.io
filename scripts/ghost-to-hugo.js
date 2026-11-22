@@ -30,6 +30,28 @@ const IMAGES_DIR = path.join(
   "scrolls"
 );
 
+// Rewrite an image URL so it points at the host we can actually reach.
+// Ghost reports absolute image URLs using whatever `url` it is configured
+// with -- in this deployment that is a link-local address (169.254.x.x) that
+// Ghost picked up for itself, which is not reachable from other machines.
+// We re-host any such URL onto GHOST_URL's host.
+function normalizeImageUrl(imageUrl) {
+  if (!imageUrl) return imageUrl;
+  try {
+    const parsed = new URL(imageUrl);
+    const ghostHost = new URL(process.env.GHOST_URL).host;
+
+    // Same host Ghost already reports -> nothing to do.
+    if (parsed.host === ghostHost) return imageUrl;
+
+    // Path/query are preserved; only the host is swapped.
+    parsed.host = ghostHost;
+    return parsed.toString();
+  } catch {
+    return imageUrl;
+  }
+}
+
 // Download image from URL and save locally
 async function downloadImage(imageUrl, slug) {
   if (!imageUrl) return null;
@@ -120,7 +142,11 @@ async function createHugoPost(post) {
   // Download feature image if exists
   let localImagePath = null;
   if (post.feature_image) {
-    localImagePath = await downloadImage(post.feature_image, post.slug);
+    const normalized = normalizeImageUrl(post.feature_image);
+    if (normalized !== post.feature_image) {
+      console.log(`    🔗 Rewriting image host: ${post.feature_image} -> ${normalized}`);
+    }
+    localImagePath = await downloadImage(normalized, post.slug);
   }
 
   // Build Hugo front matter
