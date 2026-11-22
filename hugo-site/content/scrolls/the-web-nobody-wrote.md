@@ -1,12 +1,16 @@
 ---
 title: The Web Nobody Wrote
 date: '2026-11-22T18:58:40.000+00:00'
-lastmod: '2026-11-22T18:58:40.000+00:00'
+lastmod: '2026-11-22T19:55:11.000+00:00'
 draft: false
 slug: the-web-nobody-wrote
-tags: []
+tags:
+  - participatory education
 author: Brett Gershon
-description: "A ball of string, passed around a circle of people. Each person who catches it says their name, where they're from, what they do. Then they toss it to someone else. By the end, everyone is holding string, and the string has made a shape nobody designed: a web, visible only because people kept it in motion.\n\nThis is\_La Telaraña\_— the spiderweb — a warm-up technique from\_Técnicas participativas para la educación popular, the 1984 handbook that Laura Vargas Vargas and Graciela Bustillos de Núñez wr"
+description: >-
+  The popular-education techniques come from a different problem. Not "how do I
+  reach more people" but "how does a group find out what it actually thinks?"
+  And the answer they give is bodily, social, and stubbornly physical.
 image: /images/scrolls/the-web-nobody-wrote-cover.jpg
 ---
 
